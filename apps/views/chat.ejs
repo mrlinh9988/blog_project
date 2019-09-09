@@ -1,0 +1,113 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Chat application</title>
+    <link href="//netdna.bootstrapcdn.com/bootstrap/3.1.0/css/bootstrap.min.css" rel="stylesheet" id="bootstrap-css">
+    <script src="//code.jquery.com/jquery-1.11.1.min.js"></script>
+    <script src="//netdna.bootstrapcdn.com/bootstrap/3.1.0/js/bootstrap.min.js"></script>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font: 13px Helvetica, Arial;
+        }
+
+        form {
+            background: #000;
+            padding: 3px;
+            position: fixed;
+            bottom: 10px;
+            width: 90%;
+        }
+
+        form input {
+            border: 0;
+            padding: 10px;
+            width: 90%;
+            margin-right: .5%;
+        }
+
+        #conversation {
+            list-style: none;
+            margin: 0;
+            padding: 0
+        }
+
+        #conversation li {
+            padding: 5px 10px;
+        }
+
+        #conversation li:nth-child(odd) {
+            background: #eee;
+        }
+    </style>
+
+</head>
+
+<body>
+    <div class="container">
+        <ul id="conversation">
+
+        </ul>
+
+        <form action="">
+            <input type="text" name="message" id="message">
+            <button id="btn_send" class="btn btn-success">Send</button>
+        </form>
+    </div>
+    <script src="/socket.io/socket.io.js"></script>
+    <!-- <script src="https://cdnjs.cloudflare.com/ajax/libs/socket.io/2.2.0/socket.io.js"></script> -->
+    <script>
+        // Kết nối đến server
+        var socket = io.connect('http://localhost:9000');
+        socket.on('connect', function () {
+            console.log('User is connecting to server');
+            
+            // Ask name
+            var userName = prompt('What is your name?');
+            // Notify to server
+            socket.emit('addUser', userName);
+
+            // Listen updateMessage event:
+            socket.on('updateMessage', (data) => {
+                $('#conversation').append('<li><b>' + data.sender + ': </b> ' + data.message + ' </li>');
+            });
+
+            // Send message event:
+            $('#btn_send').click(function (){
+                var message = $('#message').val();
+                // Reset ô nhập message về rỗng
+                $('#message').val('');
+
+                // Nếu message không rỗng 
+                if (message.trim().length != 0) { 
+                    socket.emit('send_message', message);
+                }   
+            });
+
+            // Khi nhập tên vào form xong thì khi ấn nút gủi message sẽ không load lại form nữa
+            $('form').submit(() => {
+                return false;
+            });
+
+            // Click enter
+            $('#message').keypress((e) => {
+                // Nếu ấn vào nút enter sau khi nhập xong message
+                // Mã nút enter là 13
+                if (e.which == 13) {
+                    $('#btn_send').trigger('click');
+                }
+            });
+        });
+    </script>
+</body>
+
+</html>

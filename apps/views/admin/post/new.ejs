@@ -1,0 +1,57 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <title>New post</title>
+    <% include ../layout/head %>
+    <script src="https://cdn.tiny.cloud/1/no-api-key/tinymce/5/tinymce.min.js" referrerpolicy="origin"></script>
+    <script>tinymce.init({ selector: 'textarea' });</script>
+</head>
+
+<body>
+    <div class="container">
+        <% include ../layout/navbar %>
+
+        <div class="panel panel-default">
+
+            <div class="panel-heading">
+                Add new post
+            </div>
+
+            <div class="panel-body">
+                <div class="row">
+                    <div class="col-lg-6">
+                        
+                        <% if (data && data.error) {%>
+                        <div id="login-alert" class="alert alert-danger col-sm-12">
+                            <span> <%= data.error %> </span>
+                        </div>
+                        <%}%>
+
+                        <form action="/admin/post/new" role="form" method="POST">
+                            <div class="form-group">
+                                <label for="">Title</label>
+                                <input type="text" class="form-control" name="title" placeholder="Title">
+                            </div>
+                            <div class="form-group">
+                                <label for="">Content</label>
+                                <textarea class="form-control" name="content" placeholder="Content"></textarea>
+                            </div>
+                            <div class="form-group">
+                                <label for="">Author</label>
+                                <input type="text" class="form-control" name="author" placeholder="Author">
+                            </div>
+
+                            <button class="btn btn-primary" type="submit">Add</button>
+                        </form>
+                    </div>
+                    <!-- col-6 (nested) -->
+                </div>
+                <!-- row (nested) -->
+            </div>
+            <!-- panel-body -->
+        </div>
+    </div>
+</body>
+
+</html>

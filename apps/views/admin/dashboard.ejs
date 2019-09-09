@@ -1,0 +1,88 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <% include layout/head %>
+</head>
+
+<body>
+    <div class="container">
+        <% include layout/navbar %>
+
+        <div class="row" style="margin-bottom: 15px;">
+            <div class="col-md-12">
+                <a href="/admin/post/new" class="btn btn-success pull-right">Add new post</a>
+            </div>
+        </div>
+
+        <div class="row">
+            <div class="col-sm-12">
+                <div class="panel panel-default">
+                    <div class="panel-heading">
+                        Posts
+                    </div>
+                    <div class="panel-body">
+                        <div class="table-responsive">
+                            <table class="table table-bordered dataTable table-striped table-hover" id="dataTable"
+                                width="100%" cellspacing="0" role="grid" aria-describedby="dataTable_info"
+                                style="width: 100%;">
+                                <thead>
+                                    <tr role="row">
+                                        <th class="sorting_desc" tabindex="0" aria-controls="dataTable" rowspan="1"
+                                            colspan="1" aria-label="Name: activate to sort column ascending"
+                                            aria-sort="descending" style="width: 56px;">ID</th>
+                                        <th class="sorting" tabindex="0" aria-controls="dataTable" rowspan="1"
+                                            colspan="1" aria-label="Office: activate to sort column ascending"
+                                            style="width: 116px;">Title</th>
+                                        <th class="sorting" tabindex="0" aria-controls="dataTable" rowspan="1"
+                                            colspan="1" aria-label="Position: activate to sort column ascending"
+                                            style="width: 180px;">Content
+                                        </th>
+                                        <th class="sorting" tabindex="0" aria-controls="dataTable" rowspan="1"
+                                            colspan="1" aria-label="Age: activate to sort column ascending"
+                                            style="width: 100px;">Author</th>
+                                        <th class="sorting" tabindex="0" aria-controls="dataTable" rowspan="1"
+                                            colspan="1" aria-label="Start date: activate to sort column ascending"
+                                            style="width: 107px;">Create
+                                            time
+                                        </th>
+                                        <th class="sorting" tabindex="0" aria-controls="dataTable" rowspan="1"
+                                            colspan="1" aria-label="Start date: activate to sort column ascending"
+                                            style="width: 107px;">Update
+                                            time
+                                        </th>
+                                        <th class="sorting" tabindex="0" aria-controls="dataTable" rowspan="1"
+                                            colspan="1" aria-label="Salary: activate to sort column ascending"
+                                            style="width: 110px;">Action</th>
+                                    </tr>
+                                </thead>
+                                <tbody>
+                                    <% if (data && data.posts) { %>
+                                    <% data.posts.forEach(post => { %>
+                                    <tr role="row" class="even">
+                                        <td class="sorting_1"><%= post.id %></td>
+                                        <td><%= post.title %></td>
+                                        <td><%= post.content %></td>
+                                        <td><%= post.author %></td>
+                                        <td><%= post.created_at %></td>
+                                        <td><%= post.updated_at %></td>
+                                        <td>
+                                            <a href="/admin/post/edit/<%= post.id  %>" class="btn btn-primary">Edit</a>
+                                            <btn post_id="<%= post.id  %>" class="btn btn-danger post_delete">Delete</btn>
+                                        </td>
+                                    </tr>
+                                    <% }) %>
+                                    <% } %>
+                                </tbody>
+                            </table>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <script src="/static/js/post.js"></script>
+</body>
+
+</html>

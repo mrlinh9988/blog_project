@@ -1,0 +1,80 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <% include layout/head %>
+</head>
+
+<body>
+    <div class="container">
+        <% include layout/navbar %>
+         
+        <div class="row">
+            <div class="col-sm-12">
+                <div class="panel panel-default">
+                    <div class="panel-heading">
+                        Users
+                    </div>
+                    <div class="panel-body">
+                        <div class="table-responsive">
+                            <table class="table table-bordered dataTable table-striped table-hover" id="dataTable"
+                                width="100%" cellspacing="0" role="grid" aria-describedby="dataTable_info"
+                                style="width: 100%;">
+                                <thead>
+                                    <tr role="row">
+                                        <th class="sorting_desc" tabindex="0" aria-controls="dataTable" rowspan="1"
+                                            colspan="1" aria-label="Name: activate to sort column ascending"
+                                            aria-sort="descending" style="width: 56px;">ID</th>
+                                        <th class="sorting" tabindex="0" aria-controls="dataTable" rowspan="1"
+                                            colspan="1" aria-label="Office: activate to sort column ascending"
+                                            style="width: 116px;">Email
+                                        </th>
+                                        <th class="sorting" tabindex="0" aria-controls="dataTable" rowspan="1"
+                                            colspan="1" aria-label="Age: activate to sort column ascending"
+                                            style="width: 100px;">First name
+                                        </th>
+                                        <th class="sorting" tabindex="0" aria-controls="dataTable" rowspan="1"
+                                            colspan="1" aria-label="Age: activate to sort column ascending"
+                                            style="width: 100px;">Last name
+                                        </th>
+                                        <th class="sorting" tabindex="0" aria-controls="dataTable" rowspan="1"
+                                            colspan="1" aria-label="Age: activate to sort column ascending"
+                                            style="width: 100px;">Create time
+                                        </th>
+                                        <th class="sorting" tabindex="0" aria-controls="dataTable" rowspan="1"
+                                            colspan="1" aria-label="Age: activate to sort column ascending"
+                                            style="width: 100px;">Update time
+                                        </th>
+                                        <th class="sorting" tabindex="0" aria-controls="dataTable" rowspan="1"
+                                            colspan="1" aria-label="Salary: activate to sort column ascending"
+                                            style="width: 110px;">Action</th>
+                                    </tr>
+                                </thead>
+                                <tbody>
+                                    <% if (data && data.users) { %>
+                                    <% data.users.forEach(user => { %>
+                                    <tr role="row" class="even">
+                                        <td class="sorting_1"><%= user.id %></td>
+                                        <td><%= user.email %></td>
+                                        <td><%= user.first_name %></td>
+                                        <td><%= user.last_name %></td>
+                                        <td><%= user.created_at %></td>
+                                        <td><%= user.updated_at %></td>
+                                        <td>
+                                            <a href="/admin/user/edit/<%= user.id  %>" class="btn btn-primary">Edit</a>
+                                            <btn post_id="<%= user.id  %>" class="btn btn-danger post_delete">Delete</btn>
+                                        </td>
+                                    </tr>
+                                    <% }) %>
+                                    <% } %>
+                                </tbody>
+                            </table>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</body>
+
+</html>
