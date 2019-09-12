@@ -31,6 +31,7 @@ function Post() {
         // Khi click vào nút Delete 
         $('.post_delete').click(function (){
             window.alert('Có chắc chắn xóa không?');
+            console.log('click');
             // Lấy ra id cần xóa
             var postId = $(this).attr('post_id');
 
