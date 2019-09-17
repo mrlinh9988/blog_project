@@ -202,7 +202,6 @@ router.put('/post/edit', (req, res) => {
 // 5. Chức năng xóa post
 router.delete('/post/delete', (req, res) => {
     var id = parseInt(req.body.id);
-    console.log(id);
     var data = postModels.deletePostById(id);
     if (!id) {
         res.json({ status_code: 500 });
