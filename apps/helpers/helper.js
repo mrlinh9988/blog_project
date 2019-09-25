@@ -1,6 +1,6 @@
 var bcrypt = require('bcrypt');
 var config = require('config');
-
+// hello
 // Hàm mã hóa password
 function hashPassword(password) {
     var saltRounds = config.get('saltRounds');
