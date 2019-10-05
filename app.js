@@ -34,4 +34,4 @@ var server = app.listen(port, host, () => {
 var io = socketio(server);
 
 var socketcontrol = require('./apps/common/socketcontrol')(io);
-// hello 
+// hello  alo
