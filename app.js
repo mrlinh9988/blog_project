@@ -1,7 +1,7 @@
 var express = require('express');
 var config = require('config');
 var bodyParser = require('body-parser');
-var session = require('express-session');
+const session = require('express-session');
 var socketio = require('socket.io');
 
 var app = express();

@@ -1,14 +1,14 @@
 {
     "server": {
-        "host": "0.0.0.0",
-        "port": 9000 
+        "host": "localhost",
+        "port": 3000 
     },
     "mysql": {
         "host": "localhost",
         "port": 3306,
-        "database": "blog",
-        "user": "blog",
-        "password": "deobiet12"
+        "database": "blog_project",
+        "user": "root",
+        "password": "deobiet121"
     },
     "saltRounds": 10,
     "secretKey": "Nguyen Hai Linh"

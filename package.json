@@ -1,7 +1,6 @@
 {
   "name": "03-blog",
   "version": "1.0.0",
-  "description": "",
   "main": "index.js",
   "scripts": {
     "start": "nodemon app.js",
@@ -22,5 +21,14 @@
   },
   "devDependencies": {
     "nodemon": "^1.19.2"
-  }
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/mrlinh9988/blog_project.git"
+  },
+  "bugs": {
+    "url": "https://github.com/mrlinh9988/blog_project/issues"
+  },
+  "homepage": "https://github.com/mrlinh9988/blog_project#readme",
+  "description": ""
 }

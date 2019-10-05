@@ -1,4 +1,4 @@
-var bcrypt = require('bcrypt');
+var bcrypt = require('bcryptjs');
 var config = require('config');
 // hello
 // Hàm mã hóa password
